@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GasStation\GasStation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GasStation\GasStation.Designer.cs">
+      <DependentUpon>GasStation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Rectangle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,6 +61,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GasStation\GasStation.resx">
+      <DependentUpon>GasStation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rectangle.resx">
       <DependentUpon>Rectangle.cs</DependentUpon>
     </EmbeddedResource>
@@ -81,5 +90,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
