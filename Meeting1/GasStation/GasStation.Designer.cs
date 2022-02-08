@@ -38,7 +38,7 @@ namespace Meeting1.GasStation
             this.Count = new System.Windows.Forms.CheckBox();
             this.Choice = new System.Windows.Forms.Button();
             this.ListOil = new System.Windows.Forms.ComboBox();
-            this.Oil = new System.Windows.Forms.TextBox();
+            this.OilPrice = new System.Windows.Forms.TextBox();
             this.MiniCafe = new System.Windows.Forms.Panel();
             this.SumFood = new System.Windows.Forms.TextBox();
             this.SummaryFood = new System.Windows.Forms.TextBox();
@@ -50,12 +50,12 @@ namespace Meeting1.GasStation
             this.CountCappuchino = new System.Windows.Forms.TextBox();
             this.CountAmericano = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.PriceHotDog = new System.Windows.Forms.TextBox();
+            this.PriceCheeseBurger = new System.Windows.Forms.TextBox();
+            this.PriceHamburger = new System.Windows.Forms.TextBox();
             this.NameProduct = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.PriceCappuchino = new System.Windows.Forms.TextBox();
+            this.PriceAmericano = new System.Windows.Forms.TextBox();
             this.HotDog = new System.Windows.Forms.CheckBox();
             this.CheesBurger = new System.Windows.Forms.CheckBox();
             this.Hamburger = new System.Windows.Forms.CheckBox();
@@ -66,9 +66,9 @@ namespace Meeting1.GasStation
             this.PriceCola = new System.Windows.Forms.TextBox();
             this.total_amount = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.Amount = new System.Windows.Forms.TextBox();
+            this.CountOil = new System.Windows.Forms.TextBox();
+            this.PriceOil = new System.Windows.Forms.TextBox();
             this.PriceGas.SuspendLayout();
             this.MiniCafe.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -76,8 +76,8 @@ namespace Meeting1.GasStation
             // 
             // PriceGas
             // 
-            this.PriceGas.Controls.Add(this.textBox9);
-            this.PriceGas.Controls.Add(this.textBox3);
+            this.PriceGas.Controls.Add(this.PriceOil);
+            this.PriceGas.Controls.Add(this.CountOil);
             this.PriceGas.Controls.Add(this.SummGas);
             this.PriceGas.Controls.Add(this.textBox11);
             this.PriceGas.Controls.Add(this.Grivna);
@@ -86,7 +86,7 @@ namespace Meeting1.GasStation
             this.PriceGas.Controls.Add(this.Count);
             this.PriceGas.Controls.Add(this.Choice);
             this.PriceGas.Controls.Add(this.ListOil);
-            this.PriceGas.Controls.Add(this.Oil);
+            this.PriceGas.Controls.Add(this.OilPrice);
             this.PriceGas.Location = new System.Drawing.Point(-2, -1);
             this.PriceGas.Name = "PriceGas";
             this.PriceGas.Size = new System.Drawing.Size(403, 265);
@@ -154,6 +154,7 @@ namespace Meeting1.GasStation
             this.Choice.TabIndex = 2;
             this.Choice.Text = "Выбрать";
             this.Choice.UseVisualStyleBackColor = true;
+            this.Choice.Click += new System.EventHandler(this.Choice_Click);
             // 
             // ListOil
             // 
@@ -170,13 +171,13 @@ namespace Meeting1.GasStation
             this.ListOil.TabIndex = 1;
             this.ListOil.SelectedIndexChanged += new System.EventHandler(this.ListOil_SelectedIndexChanged);
             // 
-            // Oil
+            // OilPrice
             // 
-            this.Oil.Location = new System.Drawing.Point(14, 71);
-            this.Oil.Multiline = true;
-            this.Oil.Name = "Oil";
-            this.Oil.Size = new System.Drawing.Size(100, 20);
-            this.Oil.TabIndex = 0;
+            this.OilPrice.Location = new System.Drawing.Point(14, 71);
+            this.OilPrice.Multiline = true;
+            this.OilPrice.Name = "OilPrice";
+            this.OilPrice.Size = new System.Drawing.Size(100, 20);
+            this.OilPrice.TabIndex = 0;
             // 
             // MiniCafe
             // 
@@ -192,12 +193,12 @@ namespace Meeting1.GasStation
             this.MiniCafe.Controls.Add(this.CountCappuchino);
             this.MiniCafe.Controls.Add(this.CountAmericano);
             this.MiniCafe.Controls.Add(this.textBox7);
-            this.MiniCafe.Controls.Add(this.textBox6);
-            this.MiniCafe.Controls.Add(this.textBox5);
-            this.MiniCafe.Controls.Add(this.textBox4);
+            this.MiniCafe.Controls.Add(this.PriceHotDog);
+            this.MiniCafe.Controls.Add(this.PriceCheeseBurger);
+            this.MiniCafe.Controls.Add(this.PriceHamburger);
             this.MiniCafe.Controls.Add(this.NameProduct);
-            this.MiniCafe.Controls.Add(this.textBox2);
-            this.MiniCafe.Controls.Add(this.textBox1);
+            this.MiniCafe.Controls.Add(this.PriceCappuchino);
+            this.MiniCafe.Controls.Add(this.PriceAmericano);
             this.MiniCafe.Controls.Add(this.HotDog);
             this.MiniCafe.Controls.Add(this.CheesBurger);
             this.MiniCafe.Controls.Add(this.Hamburger);
@@ -232,6 +233,7 @@ namespace Meeting1.GasStation
             this.CountHotDog.Size = new System.Drawing.Size(100, 20);
             this.CountHotDog.TabIndex = 19;
             this.CountHotDog.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.CountHotDog.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CountHotDog_KeyPress);
             // 
             // CountCheeseBurger
             // 
@@ -240,6 +242,7 @@ namespace Meeting1.GasStation
             this.CountCheeseBurger.Size = new System.Drawing.Size(100, 20);
             this.CountCheeseBurger.TabIndex = 18;
             this.CountCheeseBurger.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.CountCheeseBurger.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CountCheeseBurger_KeyPress);
             // 
             // CountHamburger
             // 
@@ -248,6 +251,7 @@ namespace Meeting1.GasStation
             this.CountHamburger.Size = new System.Drawing.Size(100, 20);
             this.CountHamburger.TabIndex = 17;
             this.CountHamburger.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.CountHamburger.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CountHamburger_KeyPress);
             // 
             // CountCola
             // 
@@ -256,6 +260,7 @@ namespace Meeting1.GasStation
             this.CountCola.Size = new System.Drawing.Size(100, 20);
             this.CountCola.TabIndex = 16;
             this.CountCola.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.CountCola.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CountCola_KeyPress);
             // 
             // textBox10
             // 
@@ -273,6 +278,7 @@ namespace Meeting1.GasStation
             this.CountCappuchino.Size = new System.Drawing.Size(100, 20);
             this.CountCappuchino.TabIndex = 14;
             this.CountCappuchino.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.CountCappuchino.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CountCappuchino_KeyPress);
             // 
             // CountAmericano
             // 
@@ -283,6 +289,7 @@ namespace Meeting1.GasStation
             this.CountAmericano.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.CountAmericano.Click += new System.EventHandler(this.CountAmericano_Click);
             this.CountAmericano.TextChanged += new System.EventHandler(this.CountAmericano_TextChanged);
+            this.CountAmericano.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CountAmericano_KeyPress);
             // 
             // textBox7
             // 
@@ -293,32 +300,32 @@ namespace Meeting1.GasStation
             this.textBox7.Text = "Количество";
             this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox6
+            // PriceHotDog
             // 
-            this.textBox6.Location = new System.Drawing.Point(151, 175);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 11;
-            this.textBox6.Text = "30.00";
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PriceHotDog.Location = new System.Drawing.Point(151, 175);
+            this.PriceHotDog.Name = "PriceHotDog";
+            this.PriceHotDog.Size = new System.Drawing.Size(100, 20);
+            this.PriceHotDog.TabIndex = 11;
+            this.PriceHotDog.Text = "30.00";
+            this.PriceHotDog.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox5
+            // PriceCheeseBurger
             // 
-            this.textBox5.Location = new System.Drawing.Point(151, 148);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 10;
-            this.textBox5.Text = "21.00";
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PriceCheeseBurger.Location = new System.Drawing.Point(151, 148);
+            this.PriceCheeseBurger.Name = "PriceCheeseBurger";
+            this.PriceCheeseBurger.Size = new System.Drawing.Size(100, 20);
+            this.PriceCheeseBurger.TabIndex = 10;
+            this.PriceCheeseBurger.Text = "21.00";
+            this.PriceCheeseBurger.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox4
+            // PriceHamburger
             // 
-            this.textBox4.Location = new System.Drawing.Point(151, 122);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 9;
-            this.textBox4.Text = "24.00";
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PriceHamburger.Location = new System.Drawing.Point(151, 122);
+            this.PriceHamburger.Name = "PriceHamburger";
+            this.PriceHamburger.Size = new System.Drawing.Size(100, 20);
+            this.PriceHamburger.TabIndex = 9;
+            this.PriceHamburger.Text = "24.00";
+            this.PriceHamburger.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // NameProduct
             // 
@@ -328,23 +335,23 @@ namespace Meeting1.GasStation
             this.NameProduct.TabIndex = 22;
             this.NameProduct.Text = "Наименование";
             // 
-            // textBox2
+            // PriceCappuchino
             // 
-            this.textBox2.Location = new System.Drawing.Point(151, 68);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 7;
-            this.textBox2.Text = "30.00";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PriceCappuchino.Location = new System.Drawing.Point(151, 68);
+            this.PriceCappuchino.Name = "PriceCappuchino";
+            this.PriceCappuchino.Size = new System.Drawing.Size(100, 20);
+            this.PriceCappuchino.TabIndex = 7;
+            this.PriceCappuchino.Text = "30.00";
+            this.PriceCappuchino.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox1
+            // PriceAmericano
             // 
-            this.textBox1.Location = new System.Drawing.Point(151, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.Text = "25.00";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PriceAmericano.Location = new System.Drawing.Point(151, 40);
+            this.PriceAmericano.Name = "PriceAmericano";
+            this.PriceAmericano.Size = new System.Drawing.Size(100, 20);
+            this.PriceAmericano.TabIndex = 6;
+            this.PriceAmericano.Text = "25.00";
+            this.PriceAmericano.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // HotDog
             // 
@@ -408,7 +415,7 @@ namespace Meeting1.GasStation
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox8);
+            this.panel1.Controls.Add(this.Amount);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.total_amount);
             this.panel1.Location = new System.Drawing.Point(-2, 262);
@@ -442,28 +449,31 @@ namespace Meeting1.GasStation
             this.button1.TabIndex = 1;
             this.button1.Text = "Посчитать";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox8
+            // Amount
             // 
-            this.textBox8.Location = new System.Drawing.Point(543, 80);
-            this.textBox8.Multiline = true;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(200, 60);
-            this.textBox8.TabIndex = 2;
+            this.Amount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.Amount.Location = new System.Drawing.Point(543, 80);
+            this.Amount.Multiline = true;
+            this.Amount.Name = "Amount";
+            this.Amount.Size = new System.Drawing.Size(200, 60);
+            this.Amount.TabIndex = 2;
             // 
-            // textBox3
+            // CountOil
             // 
-            this.textBox3.Location = new System.Drawing.Point(104, 122);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 9;
+            this.CountOil.Location = new System.Drawing.Point(104, 122);
+            this.CountOil.Name = "CountOil";
+            this.CountOil.Size = new System.Drawing.Size(100, 20);
+            this.CountOil.TabIndex = 9;
+            this.CountOil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CountOil_KeyPress);
             // 
-            // textBox9
+            // PriceOil
             // 
-            this.textBox9.Location = new System.Drawing.Point(104, 153);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 20);
-            this.textBox9.TabIndex = 10;
+            this.PriceOil.Location = new System.Drawing.Point(104, 153);
+            this.PriceOil.Name = "PriceOil";
+            this.PriceOil.Size = new System.Drawing.Size(100, 20);
+            this.PriceOil.TabIndex = 10;
             // 
             // GasStation
             // 
@@ -490,14 +500,14 @@ namespace Meeting1.GasStation
         private System.Windows.Forms.Panel PriceGas;
         private System.Windows.Forms.Button Choice;
         private System.Windows.Forms.ComboBox ListOil;
-        private System.Windows.Forms.TextBox Oil;
+        private System.Windows.Forms.TextBox OilPrice;
         private System.Windows.Forms.Panel MiniCafe;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox PriceHotDog;
+        private System.Windows.Forms.TextBox PriceCheeseBurger;
+        private System.Windows.Forms.TextBox PriceHamburger;
         private System.Windows.Forms.TextBox NameProduct;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox PriceCappuchino;
+        private System.Windows.Forms.TextBox PriceAmericano;
         private System.Windows.Forms.CheckBox HotDog;
         private System.Windows.Forms.CheckBox CheesBurger;
         private System.Windows.Forms.CheckBox Hamburger;
@@ -522,10 +532,10 @@ namespace Meeting1.GasStation
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox PriceCola;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox Amount;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox total_amount;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox PriceOil;
+        private System.Windows.Forms.TextBox CountOil;
     }
 }
