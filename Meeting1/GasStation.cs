@@ -8,17 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Meeting1.GasStation
+namespace Meeting1
 {
     public partial class GasStation : Form
     {
         
-
         public GasStation()
         {
             InitializeComponent();
-            this.OilPrice.Text = this.PriceOil.Text;
-            this.ListOil.Items.ToString();
+            Text = "Автозаправка";
+            
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -58,7 +57,7 @@ namespace Meeting1.GasStation
         {
             char number = e.KeyChar;
 
-            if (!Char.IsDigit(number))
+            if (!Char.IsDigit(number)&&!Char.IsPunctuation(number))
             {
                 e.Handled = true;
             }
@@ -73,11 +72,7 @@ namespace Meeting1.GasStation
             if (!Char.IsDigit(number))
             {
                 e.Handled = true;
-                int c = int.Parse(CountAmericano.Text);
-                double p = double.Parse(PriceAmericano.Text);
-                sumProduct = c * p;
-                sumFood += sumProduct;
-                SumFood.Text = sumFood.ToString();
+                
             }
             
         }
@@ -89,11 +84,7 @@ namespace Meeting1.GasStation
             if (!Char.IsDigit(number))
             {
                 e.Handled = true;
-                int c = int.Parse(CountCappuchino.Text);
-                double p = double.Parse(PriceCappuchino.Text);
-                sumProduct = c * p;
-                sumFood += sumProduct;
-                SumFood.Text = sumFood.ToString();
+                
             }
         }
 
@@ -104,11 +95,7 @@ namespace Meeting1.GasStation
             if (!Char.IsDigit(number))
             {
                 e.Handled = true;
-                int c = int.Parse(CountCola.Text);
-                double p = double.Parse(PriceCola.Text);
-                sumProduct = c * p;
-                sumFood += sumProduct;
-                SumFood.Text = sumFood.ToString();
+                
             }
         }
 
@@ -119,11 +106,7 @@ namespace Meeting1.GasStation
             if (!Char.IsDigit(number))
             {
                 e.Handled = true;
-                int c = int.Parse(CountHamburger.Text);
-                double p = double.Parse(PriceHamburger.Text);
-                sumProduct = c * p;
-                sumFood += sumProduct;
-                SumFood.Text = sumFood.ToString();
+                
             }
         }
 
@@ -134,11 +117,7 @@ namespace Meeting1.GasStation
             if (!Char.IsDigit(number))
             {
                 e.Handled = true;
-                int c = int.Parse(CountCheeseBurger.Text);
-                double p = double.Parse(PriceCheeseBurger.Text);
-                sumProduct = c * p;
-                sumFood += sumProduct;
-                SumFood.Text = sumFood.ToString();
+                
             }
         }
 
@@ -149,18 +128,53 @@ namespace Meeting1.GasStation
             if (!Char.IsDigit(number))
             {
                 e.Handled = true;
-                int c = int.Parse(CountHotDog.Text);
-                double p = double.Parse(PriceHotDog.Text);
-                sumProduct = c * p;
-                sumFood += sumProduct;
-                SumFood.Text = sumFood.ToString();
+                
             }
             
         }
         double totalAmount;
         private void button1_Click(object sender, EventArgs e)
         { totalAmount = sumFood + sumOil;
-            Amount.Text = totalAmount.ToString();
+            Amount.Text = totalAmount.ToString()+" грн.";
+        }
+
+        private void AmountFood_Click(object sender, EventArgs e)
+        {
+            List<TextBox> textBoxes1 = new List<TextBox>();
+            textBoxes1.Add(PriceAmericano);
+            textBoxes1.Add(PriceCappuchino);
+            textBoxes1.Add(PriceCola);
+            textBoxes1.Add(PriceHamburger);
+            textBoxes1.Add(PriceCheeseBurger);
+            textBoxes1.Add(PriceHotDog);
+            List<TextBox> textBoxes2 = new List<TextBox>();
+            textBoxes2.Add(CountAmericano);
+            textBoxes2.Add(CountCappuchino);
+            textBoxes2.Add(CountCola);
+            textBoxes2.Add(CountHamburger);
+            textBoxes2.Add(CountCheeseBurger);
+            textBoxes2.Add(CountHotDog);
+            for (int i=0;i<textBoxes1.Count;i++)
+                for(int j=0;j<textBoxes2.Count;j++)
+                {
+                  if (i == j&& textBoxes2[j].Text !=null)
+                    {
+                        sumProduct = Convert.ToDouble(textBoxes1[i].Text) * 
+                            Convert.ToInt32( textBoxes2[j].Text);
+                        sumFood += sumProduct;
+                        SumFood.Text = sumFood.ToString();
+                    }
+                }
+        }
+
+        private void PriceOil_TextChanged(object sender, EventArgs e)
+        {
+            PriceOil.Text = OilPrice.Text;
+        }
+
+        private void OilPrice_TextChanged(object sender, EventArgs e)
+        {
+            Convert.ToDouble(OilPrice.Text);
         }
     }
 }

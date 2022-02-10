@@ -1,5 +1,5 @@
 ﻿
-namespace Meeting1.GasStation
+namespace Meeting1
 {
     partial class GasStation
     {
@@ -30,6 +30,8 @@ namespace Meeting1.GasStation
         private void InitializeComponent()
         {
             this.PriceGas = new System.Windows.Forms.Panel();
+            this.PriceOil = new System.Windows.Forms.TextBox();
+            this.CountOil = new System.Windows.Forms.TextBox();
             this.SummGas = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.Grivna = new System.Windows.Forms.TextBox();
@@ -40,6 +42,8 @@ namespace Meeting1.GasStation
             this.ListOil = new System.Windows.Forms.ComboBox();
             this.OilPrice = new System.Windows.Forms.TextBox();
             this.MiniCafe = new System.Windows.Forms.Panel();
+            this.AmountFood = new System.Windows.Forms.Button();
+            this.PriceCola = new System.Windows.Forms.TextBox();
             this.SumFood = new System.Windows.Forms.TextBox();
             this.SummaryFood = new System.Windows.Forms.TextBox();
             this.CountHotDog = new System.Windows.Forms.TextBox();
@@ -63,12 +67,9 @@ namespace Meeting1.GasStation
             this.Cappuchino = new System.Windows.Forms.CheckBox();
             this.Americano = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.PriceCola = new System.Windows.Forms.TextBox();
-            this.total_amount = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.Amount = new System.Windows.Forms.TextBox();
-            this.CountOil = new System.Windows.Forms.TextBox();
-            this.PriceOil = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.total_amount = new System.Windows.Forms.TextBox();
             this.PriceGas.SuspendLayout();
             this.MiniCafe.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -92,6 +93,22 @@ namespace Meeting1.GasStation
             this.PriceGas.Size = new System.Drawing.Size(403, 265);
             this.PriceGas.TabIndex = 0;
             this.PriceGas.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // PriceOil
+            // 
+            this.PriceOil.Location = new System.Drawing.Point(104, 153);
+            this.PriceOil.Name = "PriceOil";
+            this.PriceOil.Size = new System.Drawing.Size(100, 20);
+            this.PriceOil.TabIndex = 10;
+            this.PriceOil.TextChanged += new System.EventHandler(this.PriceOil_TextChanged);
+            // 
+            // CountOil
+            // 
+            this.CountOil.Location = new System.Drawing.Point(104, 122);
+            this.CountOil.Name = "CountOil";
+            this.CountOil.Size = new System.Drawing.Size(100, 20);
+            this.CountOil.TabIndex = 9;
+            this.CountOil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CountOil_KeyPress);
             // 
             // SummGas
             // 
@@ -148,12 +165,14 @@ namespace Meeting1.GasStation
             // 
             // Choice
             // 
-            this.Choice.Location = new System.Drawing.Point(235, 23);
+            this.Choice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Choice.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Choice.Location = new System.Drawing.Point(121, 220);
             this.Choice.Name = "Choice";
             this.Choice.Size = new System.Drawing.Size(75, 23);
             this.Choice.TabIndex = 2;
-            this.Choice.Text = "Выбрать";
-            this.Choice.UseVisualStyleBackColor = true;
+            this.Choice.Text = "Посчитать";
+            this.Choice.UseVisualStyleBackColor = false;
             this.Choice.Click += new System.EventHandler(this.Choice_Click);
             // 
             // ListOil
@@ -178,10 +197,12 @@ namespace Meeting1.GasStation
             this.OilPrice.Name = "OilPrice";
             this.OilPrice.Size = new System.Drawing.Size(100, 20);
             this.OilPrice.TabIndex = 0;
+            this.OilPrice.TextChanged += new System.EventHandler(this.OilPrice_TextChanged);
             // 
             // MiniCafe
             // 
             this.MiniCafe.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.MiniCafe.Controls.Add(this.AmountFood);
             this.MiniCafe.Controls.Add(this.PriceCola);
             this.MiniCafe.Controls.Add(this.SumFood);
             this.MiniCafe.Controls.Add(this.SummaryFood);
@@ -209,6 +230,26 @@ namespace Meeting1.GasStation
             this.MiniCafe.Name = "MiniCafe";
             this.MiniCafe.Size = new System.Drawing.Size(397, 265);
             this.MiniCafe.TabIndex = 1;
+            // 
+            // AmountFood
+            // 
+            this.AmountFood.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.AmountFood.Location = new System.Drawing.Point(151, 223);
+            this.AmountFood.Name = "AmountFood";
+            this.AmountFood.Size = new System.Drawing.Size(100, 23);
+            this.AmountFood.TabIndex = 24;
+            this.AmountFood.Text = "Посчитать";
+            this.AmountFood.UseVisualStyleBackColor = false;
+            this.AmountFood.Click += new System.EventHandler(this.AmountFood_Click);
+            // 
+            // PriceCola
+            // 
+            this.PriceCola.Location = new System.Drawing.Point(151, 94);
+            this.PriceCola.Name = "PriceCola";
+            this.PriceCola.Size = new System.Drawing.Size(100, 20);
+            this.PriceCola.TabIndex = 23;
+            this.PriceCola.Text = "15.00";
+            this.PriceCola.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // SumFood
             // 
@@ -423,22 +464,16 @@ namespace Meeting1.GasStation
             this.panel1.Size = new System.Drawing.Size(803, 189);
             this.panel1.TabIndex = 2;
             // 
-            // PriceCola
+            // Amount
             // 
-            this.PriceCola.Location = new System.Drawing.Point(151, 94);
-            this.PriceCola.Name = "PriceCola";
-            this.PriceCola.Size = new System.Drawing.Size(100, 20);
-            this.PriceCola.TabIndex = 23;
-            this.PriceCola.Text = "15,00";
-            this.PriceCola.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // total_amount
-            // 
-            this.total_amount.Location = new System.Drawing.Point(15, 84);
-            this.total_amount.Name = "total_amount";
-            this.total_amount.Size = new System.Drawing.Size(100, 20);
-            this.total_amount.TabIndex = 0;
-            this.total_amount.Text = "Итого к оплате:";
+            this.Amount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.Amount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Amount.Location = new System.Drawing.Point(543, 80);
+            this.Amount.Multiline = true;
+            this.Amount.Name = "Amount";
+            this.Amount.Size = new System.Drawing.Size(200, 60);
+            this.Amount.TabIndex = 2;
+            this.Amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button1
             // 
@@ -451,29 +486,13 @@ namespace Meeting1.GasStation
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Amount
+            // total_amount
             // 
-            this.Amount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.Amount.Location = new System.Drawing.Point(543, 80);
-            this.Amount.Multiline = true;
-            this.Amount.Name = "Amount";
-            this.Amount.Size = new System.Drawing.Size(200, 60);
-            this.Amount.TabIndex = 2;
-            // 
-            // CountOil
-            // 
-            this.CountOil.Location = new System.Drawing.Point(104, 122);
-            this.CountOil.Name = "CountOil";
-            this.CountOil.Size = new System.Drawing.Size(100, 20);
-            this.CountOil.TabIndex = 9;
-            this.CountOil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CountOil_KeyPress);
-            // 
-            // PriceOil
-            // 
-            this.PriceOil.Location = new System.Drawing.Point(104, 153);
-            this.PriceOil.Name = "PriceOil";
-            this.PriceOil.Size = new System.Drawing.Size(100, 20);
-            this.PriceOil.TabIndex = 10;
+            this.total_amount.Location = new System.Drawing.Point(15, 84);
+            this.total_amount.Name = "total_amount";
+            this.total_amount.Size = new System.Drawing.Size(120, 20);
+            this.total_amount.TabIndex = 0;
+            this.total_amount.Text = "Итого к оплате:";
             // 
             // GasStation
             // 
@@ -537,5 +556,6 @@ namespace Meeting1.GasStation
         private System.Windows.Forms.TextBox total_amount;
         private System.Windows.Forms.TextBox PriceOil;
         private System.Windows.Forms.TextBox CountOil;
+        private System.Windows.Forms.Button AmountFood;
     }
 }

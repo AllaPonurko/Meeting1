@@ -65,5 +65,11 @@ namespace Meeting1
              Text = MousePosition.ToString();
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            GasStation gasstation = new GasStation();
+            gasstation.Show();
+        }
     }
 }
